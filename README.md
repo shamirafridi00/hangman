@@ -4,7 +4,7 @@
 
 This Hangman game is a simple command-line implementation in Ruby. It allows players to guess a hidden word one letter at a time. The game provides features to save and load games, offering flexibility and entertainment.
 
-This project is part of The Odin Project curriculum, designed to help learners practice and improve their Ruby programming skills.
+This project is part of [The Odin Project curriculum](https://www.theodinproject.com/lessons/ruby-hangman), designed to help learners practice and improve their Ruby programming skills.
 
 ## Table of Contents
 
