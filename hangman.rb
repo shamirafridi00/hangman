@@ -10,7 +10,7 @@ random_index = rand(filtered_words.length)
 
 # Load the selected word into your hash
 selected_word = filtered_words[random_index]
-
+p selected_word
 
 ################ METHODS ################
 
@@ -55,8 +55,8 @@ puts "Random Word: #{selected_word}"
 puts "Hash: #{dictionary}"
 
 
-display = '_' * selected_word.length
-p display
+display = Array.new(selected_word.length, '_')
+puts display.join('')
 
 lifes = selected_word.length
 puts "You are with #{lifes} guesses"
@@ -67,7 +67,6 @@ guessed_letters = []
 
 loop do
   puts "Guessed letters: #{guessed_letters.join(' ')}"
-  puts display
 
   puts "Enter your guess: "
   input = gets.chomp.downcase
@@ -81,19 +80,21 @@ loop do
 
     selected_word.each_char.with_index do |char, index|
       if char == guess
-        p display[index] = guess
-        guessed_letters << guess
+        display[index] = guess
         correct_guess = true
         end
     end
 
 
-    if display == selected_word
+    puts "Correct guess!" if correct_guess
+    puts display.join(' ')
+
+
+    if display.join('') == selected_word
       puts "Congratulations! You guessed the word: #{selected_word}"
       break
     end
 
-    puts "Correct guess!" if correct_guess
 
 
 
