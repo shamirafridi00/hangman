@@ -63,17 +63,21 @@ puts "You are with #{lifes} guesses"
 
 
 guessed_letters = []
+guessed_letters = []
+alphabet = ('a'..'z').to_a  # Create an array of all lowercase letters
 
 
 loop do
   puts "Guessed letters: #{guessed_letters.join(' ')}"
+  puts "Available letters: #{alphabet.join(' ')}"
 
   puts "Enter your guess: "
   input = gets.chomp.downcase
   guess = check_input(input)
 
-  if dictionary[:random_word].include?(guess) && guess.match?(/[a-z]/) && !guessed_letters.include?(guess)
+  if alphabet.include?(guess) && !guessed_letters.include?(guess)
     guessed_letters << guess
+    alphabet.delete(guess)
     correct_guess = false
 
 
@@ -99,13 +103,19 @@ loop do
 
 
   else
-    puts 'no it does not exist'
-    puts "Guesses left: #{lifes = lifes- 1}"
+    puts "Invalid guess. Please enter a single letter that you haven't guessed before."
+    lifes -= 1
+    guessed_letters << guess
+    alphabet.delete(guess)
+    puts "Guessed letters: #{guessed_letters.join(' ')}"
+
+
+    if lifes.zero?
+      puts "You lost! The word was: #{selected_word}"
+      break
+    else
+      puts "Guesses left: #{lifes}"
+    end
   end
 
 end
-
-
-# display.gsub!('_', guess)
-# guessed_letters = []
-# p display
